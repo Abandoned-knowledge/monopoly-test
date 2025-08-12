@@ -3,12 +3,13 @@ import { computed, ref, watchEffect } from "vue";
 import type { IPlayer } from "@/types/player.ts";
 import TransferFormSelect from "@elements/TransferForm/TransferFormSelect.vue";
 import useTransactionStore from "@store/useTransactionStore.ts";
+import { BALANCE_CHANGE_STEP, MINIMUM_NEGATIVE_PLAYER_BALANCE } from "@constants/player.ts";
 
 const playerFrom = ref<IPlayer>();
 const playerTo = ref<IPlayer>();
 
 const isSelectPlayerToDisabled = computed(() => playerFrom.value === undefined);
-const maxBalance = computed(() => playerFrom.value ? playerFrom.value.balance : 0);
+const maxBalance = computed(() => (playerFrom.value ? playerFrom.value.balance : 0) + MINIMUM_NEGATIVE_PLAYER_BALANCE);
 const isInputNumberDisabled = computed(() => playerFrom.value === undefined || playerTo.value === undefined);
 
 const inputNumberValue = ref<number>();
@@ -53,7 +54,18 @@ function onSubmit() {
       placeholder="Введите сумму"
       :max="maxBalance"
       :disabled="isInputNumberDisabled"
-    />
+      fluid
+      showButtons
+      :step="BALANCE_CHANGE_STEP"
+      buttonLayout="horizontal"
+    >
+      <template #incrementbuttonicon>
+        <span class="pi pi-plus" />
+      </template>
+      <template #decrementbuttonicon>
+        <span class="pi pi-minus" />
+      </template>
+    </InputNumber>
 
     <Button class="font-medium" severity="contrast" type="submit">Перевести</Button>
   </form>

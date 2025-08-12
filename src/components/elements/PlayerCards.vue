@@ -6,7 +6,7 @@ const playerStore = usePlayerStore();
 </script>
 
 <template>
-  <ul class="overflow-scroll gap-4 flex flex-col no-scrollbar">
+  <ul class="overflow-y-scroll gap-4 flex flex-col">
     <li v-for="player of playerStore.players">
       <PlayerCard
         :id="player.id"

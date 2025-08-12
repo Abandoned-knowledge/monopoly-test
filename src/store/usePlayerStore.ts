@@ -9,7 +9,7 @@ import { DEFAULT_PLAYER_BALANCE } from "@constants/player.ts";
 import getImagePath from "@utils/getImagePath.ts";
 
 export default defineStore("player", () => {
-  const { showError, showSuccess } = useCustomToast();
+  const { showError, showSuccess, showInfo } = useCustomToast();
 
   const playerIndex = ref<number>(1);
   const players = ref<IPlayer[]>([]);
@@ -43,6 +43,8 @@ export default defineStore("player", () => {
     if (player) {
       player.status = "eliminated";
       player.balance = 0;
+
+      showInfo(`${player.name} выбыл`);
     }
   }
 

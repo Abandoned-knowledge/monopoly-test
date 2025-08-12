@@ -7,7 +7,13 @@ const transactionStore = useTransactionStore();
 </script>
 
 <template>
-  <DataTable :value="transactionStore.transactions"showGridlines stripedRows size="small">
+  <DataTable
+    class="overflow-y-scroll"
+    :value="transactionStore.transactions"
+    showGridlines
+    stripedRows
+    size="small"
+  >
     <template #header>
       <h1 class="text-3xl font-bold text-center">История переводов</h1>
     </template>

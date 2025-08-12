@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import type { IPlayer } from "@/types/player.ts";
 import { formatBalance } from "@utils/formatBalance.ts";
 
 import usePlayerStore from "@store/usePlayerStore.ts";
 import Card from "primevue/card";
+import { MINIMUM_NEGATIVE_PLAYER_BALANCE } from "@constants/player.ts";
 
 const props = defineProps<IPlayer>();
 
@@ -12,6 +13,12 @@ const { eliminatePlayer } = usePlayerStore();
 
 const PlayerCardClasses = computed(() => [{ "player-card--eliminated": props.status === "eliminated" }]);
 const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "text-green-500"]);
+
+watch(() => props.balance, (newValue, oldValue) => {
+  if (oldValue > newValue && newValue <= -MINIMUM_NEGATIVE_PLAYER_BALANCE) {
+    eliminatePlayer(props.id);
+  }
+});
 </script>
 
 <template>
