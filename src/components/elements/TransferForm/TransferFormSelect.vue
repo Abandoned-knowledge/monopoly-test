@@ -13,11 +13,13 @@ const props = defineProps<{
 }>();
 
 const filteredPlayers = computed(() => {
+  let players = playerStore.players.filter(player => player.status === "in game");
+
   if (props.playerFrom === undefined) {
-    return playerStore.players;
+    return players;
   }
 
-  return playerStore.players.filter(player => player !== props.playerFrom);
+  return players.filter(player => player !== props.playerFrom);
 });
 </script>
 
@@ -33,7 +35,7 @@ const filteredPlayers = computed(() => {
       <template v-if="slotProps.value">
         <span class="flex items-center">
         <img class="w-8 aspect-square object-cover mr-2" :src="slotProps.value.image_name" :alt="slotProps.value.name">
-        {{ slotProps.inputNumberValue.name }}
+        {{ slotProps.value.name }}
         </span>
       </template>
     </template>

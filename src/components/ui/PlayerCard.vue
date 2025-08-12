@@ -3,25 +3,31 @@ import { computed } from "vue";
 import type { IPlayer } from "@/types/player.ts";
 import { formatBalance } from "@utils/formatBalance.ts";
 
+import usePlayerStore from "@store/usePlayerStore.ts";
 import Card from "primevue/card";
 
-const props = defineProps<Omit<IPlayer, "id">>();
+const props = defineProps<IPlayer>();
+
+const { eliminatePlayer } = usePlayerStore();
 
 const PlayerCardClasses = computed(() => [{ "player-card--eliminated": props.status === "eliminated" }]);
 const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "text-green-500"]);
-
 </script>
 
 <template>
+
   <Card class="player-card" :class="PlayerCardClasses" :pt="{
     header: {
       class: 'h-full rounded-[inherit]'
     },
     body: {
-      class: '!p-0'
+      class: '!p-0 w-full',
+    },
+    content: {
+      class: 'flex h-full'
     }
   }">
-    <template #header class="h-full">
+    <template #header>
       <div class="player-card__image-wrapper">
         <img class="player-card__image" :src="props.image_name" alt="avatar">
       </div>
@@ -31,6 +37,15 @@ const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "tex
         <h2 class="uppercase font-medium">{{ props.name }}</h2>
         <span class="text-xl font-bold" :class="BalanceClasses">{{ formatBalance(props.balance) }}</span>
       </div>
+
+      <Button
+        v-if="props.status !== 'eliminated'"
+        @click="eliminatePlayer(props.id)"
+        class="player-card__eliminate-button"
+        icon="pi pi-times"
+        aria-label="Close"
+        severity="danger"
+      />
     </template>
   </Card>
 </template>
@@ -39,7 +54,17 @@ const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "tex
 @reference "tailwindcss";
 
 .player-card {
-  @apply h-16 !flex-row gap-4;
+  @apply h-16 !flex-row gap-4 relative;
+
+  &:hover {
+    .player-card__eliminate-button {
+      @apply opacity-100;
+    }
+  }
+}
+
+.player-card__eliminate-button {
+  @apply ml-auto h-full opacity-0 transition w-16;
 }
 
 .player-card__image-wrapper {
@@ -54,7 +79,7 @@ const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "tex
   @apply relative;
 
   &::before {
-    @apply content-['Выбыл'] text-2xl absolute opacity-80 bg-black text-yellow-500 inset-0 flex items-center justify-center;
+    @apply content-['Выбыл'] text-2xl absolute opacity-80 bg-black text-yellow-500 inset-0 flex items-center justify-center rounded-lg;
   }
 }
 </style>
