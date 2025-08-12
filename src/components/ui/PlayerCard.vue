@@ -3,37 +3,51 @@ import { computed } from "vue";
 import type { IPlayer } from "@/types/player.ts";
 import { formatBalance } from "@utils/formatBalance.ts";
 
+import Card from "primevue/card";
+
 const props = defineProps<Omit<IPlayer, "id">>();
 
 const PlayerCardClasses = computed(() => [{ "player-card--eliminated": props.status === "eliminated" }]);
-const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "text-green-600"]);
+const BalanceClasses = computed(() => [props.balance < 0 ? "text-red-500" : "text-green-500"]);
+
 </script>
 
 <template>
-  <div class="player-card" :class="PlayerCardClasses">
-    <div class="player-card__image-wrapper">
-      <img class="player-card__image" :src="props.image_name" alt="avatar">
-    </div>
-    <div class="flex flex-col py-2">
-      <h2 class="text-black uppercase font-medium">{{ props.name }}</h2>
-      <span class="text-xl font-bold" :class="BalanceClasses">{{ formatBalance(props.balance) }}</span>
-    </div>
-  </div>
+  <Card class="player-card" :class="PlayerCardClasses" :pt="{
+    header: {
+      class: 'h-full rounded-[inherit]'
+    },
+    body: {
+      class: '!p-0'
+    }
+  }">
+    <template #header class="h-full">
+      <div class="player-card__image-wrapper">
+        <img class="player-card__image" :src="props.image_name" alt="avatar">
+      </div>
+    </template>
+    <template #content>
+      <div class="flex flex-col py-2">
+        <h2 class="uppercase font-medium">{{ props.name }}</h2>
+        <span class="text-xl font-bold" :class="BalanceClasses">{{ formatBalance(props.balance) }}</span>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <style scoped>
 @reference "tailwindcss";
 
 .player-card {
-  @apply flex h-16 bg-neutral-200 w-fit rounded-lg pr-4 gap-8 justify-between w-full;
+  @apply h-16 !flex-row gap-4;
 }
 
 .player-card__image-wrapper {
-  @apply bg-neutral-600 aspect-square rounded-[inherit];
+  @apply bg-gray-100 dark:bg-neutral-800 aspect-square rounded-[inherit] h-full flex items-center justify-center;
 }
 
 .player-card__image {
-  @apply w-full h-full object-contain;
+  @apply aspect-square h-[90%] object-contain;
 }
 
 .player-card--eliminated {

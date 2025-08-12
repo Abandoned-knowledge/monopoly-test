@@ -10,7 +10,7 @@ const playerStore = usePlayerStore();
 <template>
   <section class="container mx-auto h-screen flex items-center">
     <div class="w-full h-[80%] grid grid-cols-[25rem_1fr_25rem] gap-20">
-      <PlayerCards class="w-60" />
+      <PlayerCards />
       <div class="w-full flex flex-col gap-4 items-center justify-center">
         <Button class="font-medium w-full" @click="playerStore.addPlayer()">Добавить игрока</Button>
         <TransferForm class="w-full" />
