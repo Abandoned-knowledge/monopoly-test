@@ -69,6 +69,12 @@ export default defineConfig({
         replacement: fileURLToPath(
           new URL("./src/constants", import.meta.url)
         )
+      },
+      {
+        find: "@composables",
+        replacement: fileURLToPath(
+          new URL("./src/composables", import.meta.url)
+        )
       }
     ]
   }

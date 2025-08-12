@@ -2,15 +2,22 @@
 import PlayerCards from "@elements/PlayerCards.vue";
 import Button from "primevue/button";
 import usePlayerStore from "@store/usePlayerStore.ts";
+import { useToast } from "primevue/usetoast";
+
+const toast = useToast();
 
 const playerStore = usePlayerStore();
 </script>
 
 <template>
-  <section class="container mx-auto">
-    <PlayerCards />
+  <section class="container mx-auto h-screen flex items-center">
+    <div class="flex justify-between w-full h-[80%]">
+      <PlayerCards />
 
-    <Button @click="playerStore.addPlayer()">Добавить игрока</Button>
+      <div class="grow">
+        <Button @click="playerStore.addPlayer()">Добавить игрока</Button>
+      </div>
+    </div>
   </section>
 </template>
 

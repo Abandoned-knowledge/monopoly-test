@@ -2,7 +2,6 @@
 </script>
 
 <template>
+  <Toast />
   <RouterView />
 </template>
-
-<style scoped></style>

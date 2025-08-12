@@ -6,14 +6,17 @@ const playerStore = usePlayerStore();
 </script>
 
 <template>
-  <PlayerCard
-    v-for="player of playerStore.players"
-    :id="player.id"
-    :image_name="player.image_name"
-    :name="player.name"
-    :balance="player.balance"
-    :status="player.status"
-  />
+  <ul class="overflow-scroll gap-4 flex flex-col no-scrollbar">
+    <li v-for="player of playerStore.players">
+      <PlayerCard
+        :id="player.id"
+        :image_name="player.image_name"
+        :name="player.name"
+        :balance="player.balance"
+        :status="player.status"
+      />
+    </li>
+  </ul>
 </template>
 
 <style scoped>

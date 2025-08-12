@@ -45,6 +45,9 @@
       ],
       "@constants/*": [
         "src/constants/*"
+      ],
+      "@composables/*": [
+        "src/composables/*"
       ]
     }
   },
