@@ -28,7 +28,11 @@ export default defineStore("transaction", () => {
     showInfo(`${player1.name} сделал перевод на сумму ${formatBalance(value)} для ${player2.name}`);
   }
 
-  return { transferBalanceBetweenPlayers, transactions };
+  function clearTransactions() {
+    transactions.value = [];
+  }
+
+  return { transactions, transferBalanceBetweenPlayers, clearTransactions };
 }, {
   persist: true
 });

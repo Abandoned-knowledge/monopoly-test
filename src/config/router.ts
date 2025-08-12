@@ -1,7 +1,7 @@
 import {
-  createWebHistory,
   createRouter,
-  type RouteRecordRaw
+  type RouteRecordRaw,
+  createMemoryHistory
 } from "vue-router";
 
 import IndexPage from "@pages/Index.vue";
@@ -13,6 +13,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ];
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createMemoryHistory(),
   routes
 });

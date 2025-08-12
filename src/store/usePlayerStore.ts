@@ -37,6 +37,11 @@ export default defineStore("player", () => {
     showSuccess("Новый игрок был добавлен");
   }
 
+  function clearPlayers() {
+    players.value = [];
+    playerIndex.value = 1;
+  }
+
   function eliminatePlayer(playerId: string) {
     const player = players.value.find(player => player.id === playerId);
 
@@ -48,7 +53,7 @@ export default defineStore("player", () => {
     }
   }
 
-  return { players, playerIndex, addPlayer, eliminatePlayer };
+  return { players, playerIndex, addPlayer, eliminatePlayer, clearPlayers };
 }, {
   persist: true
 });
