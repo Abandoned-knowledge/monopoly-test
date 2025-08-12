@@ -26,7 +26,7 @@ export default function useCustomToast() {
       severity: "info",
       summary: "Информация",
       detail: message,
-      life: 1000
+      life: 5000
     });
   }
 

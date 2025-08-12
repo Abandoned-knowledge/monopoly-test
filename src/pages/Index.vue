@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Button from "primevue/button";
 import usePlayerStore from "@store/usePlayerStore.ts";
 import { useRouter } from "vue-router";
 
