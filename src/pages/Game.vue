@@ -2,9 +2,6 @@
 import PlayerCards from "@elements/PlayerCards.vue";
 import Button from "primevue/button";
 import usePlayerStore from "@store/usePlayerStore.ts";
-import { useToast } from "primevue/usetoast";
-
-const toast = useToast();
 
 const playerStore = usePlayerStore();
 </script>
