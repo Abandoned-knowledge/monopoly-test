@@ -27,6 +27,12 @@
       ],
       "@elements/*": [
         "src/components/elements/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@css/*": [
+        "src/assets/css/*"
       ]
     }
   },

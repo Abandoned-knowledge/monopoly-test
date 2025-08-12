@@ -1,10 +1,11 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), tailwindcss()],
   resolve: {
     alias: [
       {
@@ -33,6 +34,16 @@ export default defineConfig({
         find: "@elements",
         replacement: fileURLToPath(
           new URL("./src/components/elements", import.meta.url),
+        ),
+      },
+      {
+        find: "@assets",
+        replacement: fileURLToPath(new URL("./src/assets", import.meta.url)),
+      },
+      {
+        find: "@css",
+        replacement: fileURLToPath(
+          new URL("./src/assets/css", import.meta.url),
         ),
       },
     ],
