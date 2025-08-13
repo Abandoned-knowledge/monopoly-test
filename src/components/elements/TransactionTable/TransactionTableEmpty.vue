@@ -7,7 +7,3 @@ import Message from "primevue/message";
     <p class="text-xl">Пока нет никаких операция</p>
   </Message>
 </template>
-
-<style scoped>
-
-</style>

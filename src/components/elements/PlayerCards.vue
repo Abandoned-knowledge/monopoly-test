@@ -18,7 +18,3 @@ const playerStore = usePlayerStore();
     </li>
   </ul>
 </template>
-
-<style scoped>
-
-</style>

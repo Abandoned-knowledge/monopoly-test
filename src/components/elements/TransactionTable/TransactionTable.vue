@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+
 import type { ITransaction } from "@/types/transaction.ts";
+import getImagePath from "@utils/getImagePath.ts";
 
 const props = defineProps<{
   transactions: ITransaction[]
@@ -24,7 +26,7 @@ const props = defineProps<{
         <span class="flex items-center gap-2">
           <img
             class="aspect-square object-cover h-8"
-            :src="slotProps.data.from.image_name"
+            :src="getImagePath(slotProps.data.from.image_name)"
             :alt="slotProps.data.from.name"
           >
           {{ slotProps.data.from.name }}
@@ -36,7 +38,7 @@ const props = defineProps<{
         <span class="flex items-center gap-2">
           <img
             class="aspect-square object-cover h-8"
-            :src="slotProps.data.to.image_name"
+            :src="getImagePath(slotProps.data.to.image_name)"
             :alt="slotProps.data.to.name"
           >
           {{ slotProps.data.to.name }}
@@ -46,7 +48,3 @@ const props = defineProps<{
     <Column field="value" header="Сумма" />
   </DataTable>
 </template>
-
-<style scoped>
-
-</style>

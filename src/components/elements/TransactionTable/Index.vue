@@ -14,7 +14,3 @@ const transactionStore = useTransactionStore();
   />
   <TransactionTableEmpty v-else />
 </template>
-
-<style scoped>
-
-</style>

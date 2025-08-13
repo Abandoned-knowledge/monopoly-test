@@ -11,7 +11,7 @@ const playerStore = usePlayerStore();
   <section class="mx-auto h-screen flex items-center max-w-11/12">
     <div class="game-container">
       <PlayerCards />
-      <div class="w-full flex flex-col gap-4 items-center justify-center">
+      <div class="max-lg:col-span-2 max-lg:row-start-1 w-full flex flex-col gap-4 items-center justify-center">
         <Button class="font-medium w-full" @click="playerStore.addPlayer()">Добавить игрока</Button>
         <TransferForm class="w-full" />
       </div>
@@ -24,6 +24,6 @@ const playerStore = usePlayerStore();
 @reference "tailwindcss";
 
 .game-container {
-  @apply w-full h-[80%] grid grid-cols-[1fr_auto_1fr] gap-20 max-xl:gap-8;
+  @apply w-full h-[80%] grid grid-cols-[1fr_auto_1fr] gap-20 max-xl:gap-8 max-lg:grid-cols-2;
 }
 </style>

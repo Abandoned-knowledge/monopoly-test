@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 import usePlayerStore from "@store/usePlayerStore.ts";
 import type { IPlayer } from "@/types/player.ts";
-import { computed } from "vue";
+import getImagePath from "@utils/getImagePath.ts";
 
 const model = defineModel();
 const playerStore = usePlayerStore();
@@ -34,20 +36,23 @@ const filteredPlayers = computed(() => {
     <template #value="slotProps" class="flex">
       <template v-if="slotProps.value">
         <span class="flex items-center">
-        <img class="w-8 aspect-square object-cover mr-2" :src="slotProps.value.image_name" :alt="slotProps.value.name">
+        <img
+          class="w-8 aspect-square object-cover mr-2"
+          :src="getImagePath(slotProps.value.image_name)"
+          :alt="slotProps.value.name"
+        >
         {{ slotProps.value.name }}
         </span>
       </template>
     </template>
 
     <template #option="slotProps">
-      <img class="w-8 aspect-square object-cover mr-2" :src="slotProps.option.image_name"
-           :alt="slotProps.option.name">
+      <img
+        class="w-8 aspect-square object-cover mr-2"
+        :src="getImagePath(slotProps.option.image_name)"
+        :alt="slotProps.option.name"
+      >
       <span>{{ slotProps.option.name }}</span>
     </template>
   </Select>
 </template>
-
-<style scoped>
-
-</style>

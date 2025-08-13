@@ -15,7 +15,20 @@ const isInputNumberDisabled = computed(() => playerFrom.value === undefined || p
 const inputNumberValue = ref<number>();
 
 watchEffect(() => {
-  if (playerFrom.value === playerTo.value && playerFrom.value !== undefined && playerTo.value !== undefined) {
+  if (
+    playerFrom.value === playerTo.value &&
+    playerFrom.value !== undefined &&
+    playerTo.value !== undefined
+  ) {
+    playerTo.value = undefined;
+  }
+
+  if (playerFrom.value !== undefined && playerFrom.value.status === "eliminated") {
+    playerFrom.value = undefined;
+    playerTo.value = undefined;
+  }
+
+  if (playerTo.value !== undefined && playerTo.value.status === "eliminated") {
     playerTo.value = undefined;
   }
 });
@@ -70,7 +83,3 @@ function onSubmit() {
     <Button class="font-medium" severity="contrast" type="submit">Перевести</Button>
   </form>
 </template>
-
-<style scoped>
-
-</style>

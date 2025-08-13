@@ -29,5 +29,3 @@ const buttonNewGameText = computed(() => isGameExists.value ? "Начать за
     <Button class="font-medium" @click="startNewGame">{{ buttonNewGameText }}</Button>
   </section>
 </template>
-
-<style scoped></style>
