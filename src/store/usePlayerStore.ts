@@ -6,7 +6,6 @@ import useCustomToast from "@composables/useCustomToast.ts";
 
 import { type IPlayer, isPlayer } from "@/types/player.ts";
 import { DEFAULT_PLAYER_BALANCE } from "@constants/player.ts";
-import getImagePath from "@utils/getImagePath.ts";
 
 export default defineStore("player", () => {
   const { showError, showSuccess, showInfo } = useCustomToast();
@@ -23,7 +22,7 @@ export default defineStore("player", () => {
     const player: IPlayer = {
       id: v4(),
       name: `Игрок ${playerIndex.value}`,
-      image_name: getImagePath(playerIndex.value),
+      image_name: `avatar-${playerIndex.value}`,
       balance: DEFAULT_PLAYER_BALANCE,
       status: "in game"
     };

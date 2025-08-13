@@ -22,7 +22,7 @@ const buttonNewGameText = computed(() => isGameExists.value ? "Начать за
 
 <template>
   <section class="container mx-auto h-screen flex items-center justify-center gap-4 flex-col">
-    <h1 class="text-3xl">У вас уже есть игра, желаете продолжить?</h1>
+    <h1 v-if="isGameExists" class="text-3xl">У вас уже есть игра, желаете продолжить?</h1>
     <Button v-if="isGameExists" class="font-medium" severity="secondary" asChild v-slot="slotProps">
       <RouterLink to="/game" :class="slotProps.class">Продолжить игру</RouterLink>
     </Button>

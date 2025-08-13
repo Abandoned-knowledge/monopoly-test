@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
-import type { IPlayer } from "@/types/player.ts";
-import { formatBalance } from "@utils/formatBalance.ts";
-
-import usePlayerStore from "@store/usePlayerStore.ts";
 import Card from "primevue/card";
+
+import { formatBalance } from "@utils/formatBalance.ts";
+import getImagePath from "@utils/getImagePath.ts";
+
+import type { IPlayer } from "@/types/player.ts";
 import { MINIMUM_NEGATIVE_PLAYER_BALANCE } from "@constants/player.ts";
+import usePlayerStore from "@store/usePlayerStore.ts";
 
 const props = defineProps<IPlayer>();
 
@@ -22,7 +24,6 @@ watch(() => props.balance, (newValue, oldValue) => {
 </script>
 
 <template>
-
   <Card class="player-card" :class="PlayerCardClasses" :pt="{
     header: {
       class: 'h-full rounded-[inherit]'
@@ -36,7 +37,7 @@ watch(() => props.balance, (newValue, oldValue) => {
   }">
     <template #header>
       <div class="player-card__image-wrapper">
-        <img class="player-card__image" :src="props.image_name" alt="avatar">
+        <img class="player-card__image" :src="getImagePath(props.image_name)" alt="avatar">
       </div>
     </template>
     <template #content>
