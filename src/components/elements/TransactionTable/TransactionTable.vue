@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import type { ITransaction } from "@types/transaction.ts";
+import type { ITransaction } from "@/types/transaction.ts";
 
 const props = defineProps<{
   transactions: ITransaction[]
