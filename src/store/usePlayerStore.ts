@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 import useCustomToast from "@composables/useCustomToast.ts";
 
 import { type IPlayer, isPlayer } from "@/types/player.ts";
-import { DEFAULT_PLAYER_BALANCE } from "@constants/player.ts";
+import { DEFAULT_PLAYER_BALANCE, MINIMUM_NEGATIVE_PLAYER_BALANCE } from "@constants/player.ts";
 
 export default defineStore("player", () => {
   const { showError, showSuccess, showInfo } = useCustomToast();
@@ -46,7 +46,7 @@ export default defineStore("player", () => {
 
     if (player) {
       player.status = "eliminated";
-      player.balance = 0;
+      player.balance = -MINIMUM_NEGATIVE_PLAYER_BALANCE;
 
       showInfo(`${player.name} выбыл`);
     }

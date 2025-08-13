@@ -38,6 +38,7 @@ const transactionStore = useTransactionStore();
 function onSubmit() {
   if (playerFrom.value && playerTo.value && inputNumberValue.value) {
     transactionStore.transferBalanceBetweenPlayers(playerFrom.value, playerTo.value, inputNumberValue.value);
+    inputNumberValue.value = 0;
   }
 }
 </script>
