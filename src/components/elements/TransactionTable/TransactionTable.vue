@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import useTransactionStore from "@store/useTransactionStore.ts";
+import type { ITransaction } from "@types/transaction.ts";
 
-const transactionStore = useTransactionStore();
+const props = defineProps<{
+  transactions: ITransaction[]
+}>();
 </script>
 
 <template>
   <DataTable
     class="overflow-y-scroll"
-    :value="transactionStore.transactions"
+    :value="props.transactions"
     showGridlines
     stripedRows
     size="small"

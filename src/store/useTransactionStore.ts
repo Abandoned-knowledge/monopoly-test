@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 
 import useCustomToast from "@composables/useCustomToast.ts";
@@ -32,7 +32,9 @@ export default defineStore("transaction", () => {
     transactions.value = [];
   }
 
-  return { transactions, transferBalanceBetweenPlayers, clearTransactions };
+  const hasTransactions = computed(() => transactions.value.length > 0);
+
+  return { transactions, transferBalanceBetweenPlayers, clearTransactions, hasTransactions };
 }, {
   persist: true
 });

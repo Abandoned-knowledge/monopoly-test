@@ -8,7 +8,7 @@ export default function useCustomToast() {
       severity: "error",
       summary: "Ошибка!",
       detail: message,
-      life: 1000
+      life: 3000
     });
   }
 
@@ -17,7 +17,7 @@ export default function useCustomToast() {
       severity: "success",
       summary: "Отлично!",
       detail: message,
-      life: 1000
+      life: 3000
     });
   }
 
